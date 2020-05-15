@@ -10,8 +10,8 @@
 
 
 
-//const numOfImg = document.getElementById("numberOf");
-//const typeOfImg = document.getElementById("typeOf");
+const numberOf = document.getElementById("num");
+const searchType = document.getElementById("type");
 const makeBox = document.getElementById("makeBox");
 const clearBox = document.getElementById("clearBox");
 const wrapper = document.getElementById("wrapper");
@@ -20,26 +20,48 @@ const wrapper = document.getElementById("wrapper");
 
 
 
-let num = numberOf.value;
+//Adding an event in order to initiate the function that will generate the images.
 
-let searchType = type.value;
+makeBox.addEventListener("click", () => {
+
+  let numberOf = parseInt(num.value);
+  let searchType = type.value;
+    createImg()
+
+  while(isNaN(numberOf.value)) {
+    document.querySelector('p').innerHTML = 'Please enter a valid search query! Lets go!';
+
+  }
+  else if(searchType === undefined){
+
+  
+    document.querySelector('p').innerHTML = ''
+    let numberOf = parseInt(num.value);
+    let searchType = type.value;
+    createImg()
+  }
+
+
+
+  }
+
+// ----- > I am still working on the final function in order to make it run. 
+  
+  
 
 
 
 
+const createImg = () => {
 
-const createImg = (num, searchType) =>{
-
-  for(let i = 0; i < num; i++); {
+  for(let i = 0; i < numberOf; i++); {
   let randomNum = Math.floor(Math.random() * 100 + 1); 
-  let image = document.createElement('img');
+  let img = document.createElement('img');
   img.src = `https://source.unsplash.com/random/500x500/?sig=${randomNum}&${searchType}`;
   img.className.add = "box"
   wrapper.appendChild("box");
   }
 }
-
-createImg()
 
 
 //This function will be used to clear the screen.
@@ -49,9 +71,6 @@ clearBox.addEventListener("click", () => {
       wrapper.removeChild(wrapper.lastChild);
     }
   })
-
-
-
 
 
 
